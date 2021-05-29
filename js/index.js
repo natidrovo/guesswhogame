@@ -241,6 +241,9 @@ class GuessWho {
     const mainModal= document.getElementById(`guess-box-${id}`);
     mainModal.classList.add('hidden')
    // const questionMade=guess(`${id}`,`${value}`)
+   //const isThisTrue = function (id, value) {
+   // this.computer.guess(`${id}`, `${value}`) === true
+  //}
     document.querySelector('#posible-value').innerHTML = `It is a ${value}`;
     //console.log (questionMade)
   }
