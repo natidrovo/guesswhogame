@@ -6,7 +6,7 @@ const characters = [{
     glasses: true,
     skin: "black",
     img: 'tim.svg',
-    visibility:true,
+    visibility: true,
   },
   {
     name: "maria",
@@ -16,7 +16,7 @@ const characters = [{
     glasses: true,
     skin: "white",
     img: 'maria.svg',
-    visibility:true,
+    visibility: true,
   },
   {
     name: "luca",
@@ -26,7 +26,7 @@ const characters = [{
     glasses: false,
     skin: "white",
     img: 'luca.svg',
-    visibility:true,
+    visibility: true,
   },
   {
     name: "elena",
@@ -36,7 +36,7 @@ const characters = [{
     glasses: false,
     skin: "brown",
     img: 'elena.svg',
-    visibility:true,
+    visibility: true,
   },
   {
     name: "liza",
@@ -46,7 +46,7 @@ const characters = [{
     glasses: false,
     skin: "black",
     img: 'liza.svg',
-    visibility:true,
+    visibility: true,
   },
   {
     name: "lucie",
@@ -56,7 +56,7 @@ const characters = [{
     glasses: true,
     skin: "white",
     img: 'lucie.svg',
-    visibility:true,
+    visibility: true,
   },
   {
     name: "marta",
@@ -66,7 +66,7 @@ const characters = [{
     beard: false,
     skin: "white",
     img: 'marta.svg',
-    visibility:true,
+    visibility: true,
 
   },
   {
@@ -77,7 +77,7 @@ const characters = [{
     beard: true,
     skin: "white",
     img: 'mario.svg',
-    visibility:true,
+    visibility: true,
   },
   {
     name: "chris",
@@ -87,7 +87,7 @@ const characters = [{
     beard: true,
     skin: "white",
     img: 'chris.svg',
-    visibility:true,
+    visibility: true,
   },
   {
     name: "peter",
@@ -97,7 +97,7 @@ const characters = [{
     beard: true,
     skin: "white",
     img: 'peter.svg',
-    visibility:true,
+    visibility: true,
   },
   {
     name: "max",
@@ -107,7 +107,7 @@ const characters = [{
     beard: false,
     skin: "white",
     img: 'max.svg',
-    visibility:true,
+    visibility: true,
   },
   {
     name: "pat",
@@ -117,7 +117,7 @@ const characters = [{
     beard: false,
     skin: "brown",
     img: 'pat.svg',
-    visibility:true,
+    visibility: true,
   },
   {
     name: "jacob",
@@ -127,7 +127,7 @@ const characters = [{
     beard: false,
     skin: "brown",
     img: 'jacob.svg',
-    visibility:true,
+    visibility: true,
   },
   {
     name: "selena",
@@ -137,7 +137,7 @@ const characters = [{
     beard: false,
     skin: "brown",
     img: 'selena.svg',
-    visibility:true,
+    visibility: true,
   },
   {
     name: "lorena",
@@ -147,7 +147,7 @@ const characters = [{
     beard: false,
     skin: "brown",
     img: 'lorena.svg',
-    visibility:true,
+    visibility: true,
   },
   {
     name: "natalie",
@@ -157,7 +157,7 @@ const characters = [{
     beard: false,
     skin: "black",
     img: 'natalie.svg',
-    visibility:true,
+    visibility: true,
   }
 ]
 
@@ -166,11 +166,11 @@ const characters = [{
 class GuessWho {
   constructor(characters) {
     this.characters = characters;
-    this.characterSelected='';
-    this.characterSelectdByComputer='';
+    this.characterSelected = '';
+    this.characterSelectdByComputer = '';
 
   }
-  
+
   shuffleCards() {
     for (let i = this.characters.length; i > 0; i--) {
       let random = Math.floor(Math.random() * i--);
@@ -194,102 +194,134 @@ class GuessWho {
   chooseYourCharacter(character) {
     const mainModal = document.getElementById('cards-selection');
     mainModal.classList.add('hidden');
-    const cardChar= document.getElementById("card-char");
+    const cardChar = document.getElementById("card-char");
     cardChar.parentNode.replaceChild(character.cloneNode(true), cardChar);
     document.querySelector('#selected-name-char').innerHTML = character.id;
-    const filteredChar= this.characters.filter(function(_character) {
-      return _character.name===character.id
-    }) 
-    this.player= new Player(filteredChar[0], this.characters);
-    let computerCards= this.characters.splice(filteredChar, 1); 
+    const filteredChar = this.characters.filter(function (_character) {
+      return _character.name === character.id
+    })
+    this.player = new Player(filteredChar[0], this.characters);
+    let computerCards = this.characters.splice(filteredChar, 1);
     const selectedCharByComputer = function (deck) {
       return deck[Math.floor(Math.random() * deck.length)]
     }
-    const computerChar= selectedCharByComputer(computerCards);
-    this.computer= new Computer (computerChar, this.characters)
+    const computerChar = selectedCharByComputer(computerCards);
+    this.computer = new Computer(computerChar, this.characters)
+    console.log(computerChar)
   }
-  
-  askMainQuestion(id) {
-    if (id==="gender"||id==="hair"||id==="skin"){
-    const modalToShow = document.getElementById(`guess-box-${id}`);
-    modalToShow.classList.remove('hidden');
-    const mainModal= document.getElementById('main-guess-box');
-    mainModal.classList.add('hidden')}
-    else {
+
+  askMainQuestion(id, value) {
+    if (id === "gender" || id === "hair" || id === "skin") {
+      const modalToShow = document.getElementById(`guess-box-${id}`);
+      modalToShow.classList.remove('hidden');
+      const mainModal = document.getElementById('main-guess-box');
+      mainModal.classList.add('hidden')
+    } else {
       const modalToShow = document.getElementById(`final-guess-box`);
       modalToShow.classList.remove('hidden');
-      const mainModal= document.getElementById('main-guess-box');
+      const mainModal = document.getElementById('main-guess-box');
       mainModal.classList.add('hidden');
+      const isThisTrue = (id, value) => {
+        return guesswho.computer.guess(id, value)
+      }
+      const arrayRightChar = (id, value) => {
+        return guesswho.player.guessAboutValue(id, value)
+      }
+      document.querySelector('#cards').innerHTML = cards;
+      const discardCharacters = function (arrayRightChar, isThisTrue) {
+        if (isThisTrue === false) {
+          arrayRightChar.forEach(
+            cards => cards.classList.add('card-discarded')
+          )
+        } 
+      }
+      console.log(discardCharacters)
+      document.querySelector('#boolean-answer').innerHTML = isThisTrue(id, value);
       document.querySelector('#char-property').innerHTML = `Does the character wear ${id}`;
     }
   }
-  
-  askValueQuestion(id,value) {
-    if (id==="hair"||id==="skin"){
-    const modalToShow = document.getElementById(`final-guess-box`);
-    modalToShow.classList.remove('hidden');
-    const mainModal= document.getElementById(`guess-box-${id}`);
-    mainModal.classList.add('hidden')
-    this.computer.guess(id, value)
-   // const questionMade=guess(`${id}`,`${value}`)
-    document.querySelector('#char-property').innerHTML = `Has the character ${value} ${id}`;
-    //console.log (questionMade)
-  }
-  else {
-    const modalToShow = document.getElementById(`final-guess-box`);
-    modalToShow.classList.remove('hidden');
-    const mainModal= document.getElementById(`guess-box-${id}`);
-    mainModal.classList.add('hidden')
-   // const questionMade=guess(`${id}`,`${value}`)
-   //const isThisTrue = function (id, value) {
-   // this.computer.guess(`${id}`, `${value}`) === true
-  //}
-    document.querySelector('#posible-value').innerHTML = `It is a ${value}`;
-    //console.log (questionMade)
-  }
+
+  askValueQuestion(id, value) {
+    if (id === "hair" || id === "skin") {
+      const modalToShow = document.getElementById(`final-guess-box`);
+      modalToShow.classList.remove('hidden');
+      const mainModal = document.getElementById(`guess-box-${id}`);
+      mainModal.classList.add('hidden')
+      const isThisTrue = (id, value) => {
+        return guesswho.computer.guess(id, value)
+      }
+      const arrayRightChar = (id, value) => {
+        return guesswho.player.guessAboutValue(id, value)
+      }
+      console.log(arrayRightChar(id, value))
+      document.querySelector('#boolean-answer').innerHTML = isThisTrue(id, value);
+      document.querySelector('#char-property').innerHTML = `Has the character ${value} ${id}`;
+    } else {
+      const modalToShow = document.getElementById(`final-guess-box`);
+      modalToShow.classList.remove('hidden');
+      const mainModal = document.getElementById(`guess-box-${id}`);
+      mainModal.classList.add('hidden')
+      const isThisTrue = (id, value) => {
+        return guesswho.computer.guess(id, value)
+      }
+      const arrayRightChar = (id, value) => {
+        return guesswho.player.guessAboutValue(id, value)
+      }
+      console.log(arrayRightChar(id, value))
+      document.querySelector('#boolean-answer').innerHTML = isThisTrue(id, value);
+      document.querySelector('#posible-value').innerHTML = `It is a ${value}`;
+    }
   }
   inputToSolve() {
     const modalToShow = document.getElementById('input-to-solve');
     modalToShow.classList.remove('hidden');
-    const isItTheRightName = document.getElementById('character-right-name');
-    this.character;
+    const supossedRightName = document.getElementById('character-right-name');
+    const theRightName = function (player) {
+      if (this.computer.name === supossedRightName) {
+
+      }
+    }
+
     //const theRightName = function ()
     //  if (isItTheRightName===chooseYourCharacter(computerIdCard)){
     //  return true
     //}
 
   }
-  
-  discardChar(){
+
+  discardChar(id, value) {
     const discardedCards = document.querySelector(`.card`);
     discardedCards.classList.add('card-discarded');
+    const mainModal = document.getElementById(`final-guess-box`);
+    mainModal.classList.add('hidden');
   }
-  
+
 }
 
 class Player {
-  constructor(character, deck){
-    this.character= character;
+  constructor(character, deck) {
+    this.character = character;
     this.deck = deck;
   }
 
   // este value pertenece a la caracteristica del persona del jugador contrario
 
 
-  guess(prop, value) {
-    return this.character[prop]===value
+  guess(id, value) {
+    return this.character[id] === value
+  }
+
+  guessAboutValue(id, value) {
+    return this.deck.filter(character => {
+      return (character[id] === value);
+    });
   }
 
 }
 
-class Computer extends Player{
-  constructor(character, deck){
-    super (character, deck);
-  }
-  guess(prop, value) {
-    return this.deck.filter(character => {
-      return (character[prop] === value);
-    });
+class Computer extends Player {
+  constructor(character, deck) {
+    super(character, deck);
   }
 
 }
