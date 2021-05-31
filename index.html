@@ -42,7 +42,7 @@
     <div class="divider"></div>
     <div id="your-panel">
       <button id="ask-question" class="btn" onclick="guesswho.askAQuestion()">Ask a question</button>
-      <button id="solve" class="btn" onclick="guesswho.inputToSolve()">Solve</button>
+      <button id="solve" class="btn" onclick="guesswho.solveIt()">Solve</button>
     </div>
   </div>
   </div>
@@ -117,13 +117,13 @@
       <button id="solve" class="btn" onclick="guesswho.solveIt()">Solve</button>
     </div>
   </div>
-  <div id="input-to-solve" class='guess-box hidden'>
-    <h2>That is the <span id="name-to-solve"></span> name</h2>
-      <button id="solve" class="btn" onclick="guesswho.solveIt()">Solve</button>
+  <div id="right-answer" class='guess-box hidden'>
+    <h2>You win!!</h2>
+      <button id="solve" class="btn" onclick="guesswho.youAreTheWinner()">Solve</button>
   </div>
-  <div id="-answer" class='guess-box hidden'>
-    <h2>That is the <span id="name-to-solve"></span> name</h2>
-      <button id="solve" class="btn" onclick="guesswho.solveIt()">Solve</button>
+  <div id="wrong-answer" class='guess-box hidden'>
+    <h2>You lose!!</h2>
+      <button id="try-again" class="btn solve" onclick="guesswho.tryAgain()">Try again!</button>
   </div>
   </div>
   <script type="text/javascript" src="./js/index.js"></script>

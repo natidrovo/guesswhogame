@@ -227,15 +227,15 @@ class GuessWho {
       const arrayRightChar = (id, value) => {
         return guesswho.player.guessAboutValue(id, value)
       }
-      document.querySelector('#cards').innerHTML = cards;
-      const discardCharacters = function (arrayRightChar, isThisTrue) {
+      document.querySelector('.card').innerHTML = cards;
+      const discardCharacters = function (arrayRightChar, isThisTrue, cards) {
         if (isThisTrue === false) {
           arrayRightChar.forEach(
             cards => cards.classList.add('card-discarded')
           )
-        } 
+        }
       }
-      console.log(discardCharacters)
+      discardCharacters(arrayRightChar(id, value), isThisTrue(id, value));
       document.querySelector('#boolean-answer').innerHTML = isThisTrue(id, value);
       document.querySelector('#char-property').innerHTML = `Does the character wear ${id}`;
     }
@@ -294,6 +294,26 @@ class GuessWho {
     discardedCards.classList.add('card-discarded');
     const mainModal = document.getElementById(`final-guess-box`);
     mainModal.classList.add('hidden');
+    const arrayRightChar = (id, value) => {
+      return guesswho.player.guessAboutValue(id, value)
+    }
+    const isThisTrue = (id, value) => {
+      return guesswho.computer.guess(id, value)
+    }
+
+    //quiero agregar a cada card del array resultante al clase discarded card
+    // no sé qué debe de estar mal, puede ser que tenga que ver con el doc DOM.JS ,
+    // en la linea 10 le digo que pille la clase card al barajarse las cartas y no sé si está dando problemas
+    document.querySelector('#cards').innerHTML = cards;
+    const discardCharacters = function (arrayRightChar, isThisTrue, cards) {
+      if (isThisTrue === false) {
+        arrayRightChar.forEach(
+          cards => cards.classList.add('card-discarded')
+        )
+      }
+    }
+    discardCharacters(arrayRightChar(id, value), isThisTrue(id, value));
+
   }
 
 }
