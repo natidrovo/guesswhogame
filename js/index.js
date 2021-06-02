@@ -281,7 +281,7 @@ class GuessWho {
 
       }
     }
-
+//aquí tengo que introducir el nombre del 
     //const theRightName = function ()
     //  if (isItTheRightName===chooseYourCharacter(computerIdCard)){
     //  return true
