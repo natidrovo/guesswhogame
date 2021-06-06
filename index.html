@@ -15,12 +15,11 @@
       <h2>Welcome to Guess Who game!</h2>
       <h3>Instructions</h3>
       <ol>
-        <li>You have to choose your character</li>
-        <li>The computer will choose its character too</li>
-        <li>You will have to guess the character of your adversary by asking questions about it by clicking over "Ask a
-          question" </li>
-        <li>The computer will ask to you some question about your character</li>
-        <li>The first who can guess the right character before will be the winner</li>
+        <li>Choose your character.</li>
+        <li>Player 2 will choose its character too.</li>
+        <li>Try to guess about the character of your adversary by asking questions.</li>
+        <li>The computer will ask to you some questions about your character.</li>
+        <li>The first who can guess the right character before will be the winner.</li>
       </ol>
       <button id="start-game" class="btn" onclick="guesswho.startGame()">Let's start</button>
     </div>
@@ -35,14 +34,15 @@
       <div id="adversary-cards">
         <div id="cards-adversary"></div>
       </div>
+    <div id="computer-questions" class="question-box">
+      <h3>Last question from Player 2 was: <span id="question-from-computer"></span></h3>
+    </div>
     <div id="selected-char">
       <h2>Your character is: <span id="selected-name-char"></span></h2>
-      <div id="card-char" class="card"></div>
+      <div id="card-char"></div>
     </div>
-    <div class="divider"></div>
     <div id="your-panel">
       <button id="ask-question" class="btn" onclick="guesswho.askAQuestion()">Ask a question</button>
-      <button id="solve" class="btn" onclick="guesswho.solveIt()">Solve</button>
     </div>
   </div>
   </div>
@@ -110,18 +110,14 @@
       <button id="discard-button" class="btn" onclick="guesswho.discardChar()">Discard characters</button>
     </div>
   </div>
-  <div id="input-to-solve" class='guess-box hidden'>
-    <h2>Write the name of the character that you think is the right one?</h2>
-    <div class='vertical-box-container'>
-      <input type="text" id="character-right-name" name="name">
-      <button id="solve" class="btn" onclick="guesswho.solveIt()">Solve</button>
-    </div>
-  </div>
-  <div id="right-answer" class='guess-box hidden'>
+
+  <div id="you-win" class='guess-box hidden'>
     <h2>You win!!</h2>
-      <button id="solve" class="btn" onclick="guesswho.youAreTheWinner()">Solve</button>
+    <h2>The character selected by Player 2 is:</h2>
+    <div id="computer-selected-char"></div>
+   <button id="solve" class="btn solve" onclick="guesswho.restart()">Restart</button>
   </div>
-  <div id="wrong-answer" class='guess-box hidden'>
+  <div id="you-lose" class='guess-box hidden'>
     <h2>You lose!!</h2>
       <button id="try-again" class="btn solve" onclick="guesswho.tryAgain()">Try again!</button>
   </div>
