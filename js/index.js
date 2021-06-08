@@ -468,11 +468,11 @@ class Computer extends Player {
   }
 
 }
-const claps= new Audio("./mixkit-small-crowd-ovation-437.wav")
+const claps= new Audio("./music/mixkit-small-crowd-ovation-437.wav")
 
-const loser = new Audio ("./fail-buzzer-01.mp3")
+const loser = new Audio ("./music/fail-buzzer-01.mp3")
 
-const backgroundAudio= new Audio("./Herb_Alpert_And_The_Tijuana_Brass_Spanish_Flea_Ringtone_(by Fringster.com).mp3")
+const backgroundAudio= new Audio("./music/Herb_Alpert_And_The_Tijuana_Brass_Spanish_Flea_Ringtone_(by Fringster.com).mp3")
 if (typeof backgroundAudio.loop == 'boolean')
 {
   backgroundAudio.loop = true;
