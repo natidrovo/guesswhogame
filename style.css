@@ -10,11 +10,6 @@ body {
   background-color: #790000;
   
 }
-
-#bg {
-display: flex;
-justify-content: space-evenly;
-}
 #cards {
     width: 50%;
     display: grid;
@@ -80,6 +75,12 @@ justify-content: space-evenly;
     flex-direction: column;
     width: 25%;
     align-items: center;
+    justify-content: center;
+}
+
+.main-content {
+    display: flex;
+    justify-content: space-evenly;
 }
 
 #selected-char, #your-panel {
@@ -202,7 +203,8 @@ h1, h2,h3 {
 }
 h2 {
     color: white;
-    font-size: 20px;
+    font-size: 24px;
+    padding: 16px;
 }
 h3 {
     font-size: 16px;
@@ -242,3 +244,94 @@ ol {
 #woman-gender-selector {
     background: url(img/woman.png) no-repeat;background-position: center;background-size: contain;
 }
+@media (max-width: 480px) {
+    
+    #cards, #cards-adversary, .card-selection-container{
+        grid-template-columns: repeat(5, 1fr) !important;
+    }
+    h2 {
+        padding: 0;
+        font-size: 16px;
+        margin: 8px;
+    }
+    ol {
+        width: 90%;
+    }
+    .card-selector {
+        width: 48px;
+        height: 64px;
+        border: 2px solid rgb(255, 255, 255);
+        border-radius: 4px;
+    }
+    .card {
+        width: 48px;
+        height: 64px;
+        border: 2px solid rgb(255, 255, 255);
+    }
+    #cards {
+        grid-gap: 4px;
+        place-items: center;
+        width: auto;
+        margin-bottom: 8px;
+    }
+    .main-content {
+        display: block;
+    }
+    #main-title {
+        display: none;
+    }
+    #cards-adversary {
+        grid-gap: 1px;
+    }
+    #adversary-cards {
+     padding: 1px;
+    }
+    
+    .adversary-card {
+            width: 8px;
+            height: 14px;
+            border:  0.5px solid rgb(255, 255, 255);
+    }
+    h3 {
+        font-size: 14px;
+        margin: 4px;
+    }
+    #score {
+        width: auto;
+    }
+    #card-char {
+        width: auto;
+        height: auto;
+    }
+    #selected-char {
+        margin-bottom: 8px;
+    }
+    .btn {
+        margin: 8px 0;
+    }
+    .guess-box-container {
+        width: 320px;
+        height: 160px;
+        font-size: 12px;
+    }
+    .question-boxes {
+    width: 48px;
+    height: 48px;
+    background-color: white;
+    border: 2px solid rgb(85, 85, 85);
+    }
+    img {
+    width: 48px !important; 
+    height: 48px !important;
+    }
+    .guess-box-container-id {
+        width: 320px;
+        height: 140px;
+    }
+  }
+
+  @media (max-width: 800px) {
+    #cards, #cards-adversary, .card-selection-container{
+        grid-template-columns: repeat(4, 1fr);
+    }
+  }
