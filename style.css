@@ -308,6 +308,7 @@ ol {
     }
     .btn {
         margin: 8px 0;
+      position:fixed;
     }
     .guess-box-container {
         width: 320px;
