@@ -277,8 +277,8 @@ ol {
     .main-content {
         display: block;
     }
-    #main-title {
-        display: none;
+    .main-title {
+        display: none !important;
     }
     #cards-adversary {
         grid-gap: 1px;
